@@ -1,0 +1,12 @@
+var bysideWebcare_webcare_id = "038412DCC2";
+var bysideWebcare_lang = "pt";
+var bysideWebcare_channel = "MEOEnergia";
+var bysideWebcare_cookie_lifetime = 180;
+//function byside_init() {
+//	try {
+//		bysideWebcare_placeholder('meo_meogetmeo_rodape_js');
+//	}
+//	catch (e) {
+//		console.log(e.message);
+//	}
+//}

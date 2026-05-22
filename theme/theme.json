@@ -1,0 +1,34 @@
+{
+    "title": "OLÁ, QUERES AJUDA?",
+    "subTitle": "",
+    "styles": ["./css/energia.css"],
+    "fonts": [],
+    "minimizedMode": "circle",
+    "openChatOnHeaderClick": true,
+    "mic": true,
+    "isModal": true,
+    "micPlaceholder": "A ouvir...",
+    "micLanguage": "pt-PT",
+    "placeholder": "Coloca a tua questão",
+    "interactionTimeoutHours": 12,
+    "chatHistory": "remote",
+    "scrollToBottomButton": true,
+    "scrollToBottomButtonOffset": 160,
+    "_content": {
+      "footerEnd": "<a href=\"/termos-e-condicoes\" target=\"_blank\">Termos e condições</a>"
+    },
+    "cardOptions": {
+      "direction": "horizontal",
+      "slidesPerView": 1.28,
+      "centeredSlides": true,
+      "spaceBetween": 10,
+      "navigation": true,
+      "pagination": {
+        "clickable": true
+      },
+      "keyboard": {
+        "enabled": true
+      },
+      "centeredSlidesBounds": true
+    }
+}

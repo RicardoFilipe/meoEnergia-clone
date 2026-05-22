@@ -1,0 +1,35 @@
+﻿(function (global) {
+  var map = {
+    react: "libs/react/v18.2.0/react.production.min.js",
+    "react-dom": "libs/react/v18.2.0/react-dom.production.min.js",
+    "react-dom/client": "libs/react/v18.2.0/react-dom.production.min.js",
+    axios: "libs/axios/axios.min.js",
+    "prop-types": "libs/prop-types/prop-types.js",
+    css: "libs/systemjs-plugin-css/css.js",
+  };
+
+  var configData = {
+    baseURL:
+      ISites.Configurations.ExternalSites.CDN.Url +
+      "/Style%20Library/Brand/react",
+    map: map,
+    defaultJSExtensions: true,
+    packages: {
+      components: {
+        defaultExtension: "min.js",
+      },
+    },
+  };
+
+  System.config(configData);
+})(this);
+
+var currentVersion = "v=3.3";
+var systemLocate = System.locate;
+
+System.locate = function (load) {
+  return Promise.resolve(systemLocate.call(this, load)).then(function (url) {
+    var fullUrl = url + (url.includes("?") ? "&" : "?") + currentVersion;
+    return fullUrl;
+  });
+};

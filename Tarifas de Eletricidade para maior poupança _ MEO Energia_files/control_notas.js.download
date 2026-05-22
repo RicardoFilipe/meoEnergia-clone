@@ -1,0 +1,145 @@
+/* Este ficheiro está atualmente associado a um ficheiro HTML com o mesmo nome e está a retirar conteúdo do mesmo. Até os ficheiros serem desassociados, não conseguirá mover, eliminar, mudar o nome ou fazer quaisquer alterações a este ficheiro. */
+
+function DisplayTemplate_f3d7f1e43b56499fb62a664caf9e3d25(ctx) {
+  var ms_outHtml=[];
+  var cachePreviousTemplateData = ctx['DisplayTemplateData'];
+  ctx['DisplayTemplateData'] = new Object();
+  DisplayTemplate_f3d7f1e43b56499fb62a664caf9e3d25.DisplayTemplateData = ctx['DisplayTemplateData'];
+
+  ctx['DisplayTemplateData']['TemplateUrl']='~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fControl_Notas.js';
+  ctx['DisplayTemplateData']['TemplateType']='Control';
+  ctx['DisplayTemplateData']['TargetControlType']=['Content Web Parts'];
+  this.DisplayTemplateData = ctx['DisplayTemplateData'];
+
+ms_outHtml.push('',''
+,''
+,''
+);
+            var mainClass = "block-notes";
+            var siteContext ="meoenergia";
+
+            if (!$isNull(ctx.ClientControl) &&
+            !$isNull(ctx.ClientControl.shouldRenderControl) &&
+            !ctx.ClientControl.shouldRenderControl())
+            {
+            return "";
+            }
+
+            ctx.ListDataJSONGroupsKey = "ResultTables";
+            var $noResults = Srch.ContentBySearch.getControlTemplateEncodedNoResultsMessage(ctx.ClientControl);
+
+            var noResultsClassName = "ms-srch-result-noResults";
+
+            var ListRenderRenderWrapper = function(itemRenderResult, inCtx, tpl)
+            {
+            var iStr = [];
+            iStr.push(itemRenderResult);
+            return iStr.join('');
+            }
+            ctx['ItemRenderWrapper'] = ListRenderRenderWrapper;
+
+            ctx.OnPostRender = [];
+
+
+            var displayMode = ctx.DataProvider.get_properties()["BlockDeviceVisibility"];
+            var containerClass = $htmlEncode(ctx.ClientControl.get_nextUniqueId() + "_hide");
+
+
+            //set the visibility on the ctx, to read in the item
+            ctx.Visibility = displayMode;
+
+            ctx.timer = false;
+            ctx.lastClientWidth = window.innerWidth;
+            ctx.OnPostRender.push(function(){
+            $(window).on('resize.' + ctx.ClientControl.get_id(), (function(a) {
+                  return function() {
+                    rtime = new Date();
+                    if (a.timer === false) {
+                                    a.timer = true;
+                                    setTimeout(function () { resizeend(a) }, 200);
+                    }
+                };
+            })(ctx));
+         });
+
+        //call the aux function to build the props for REACT blocks - displaytemplateshelper
+       var tmpProps = BuildBlockProps(ctx, null, siteContext);
+
+        var context = tmpProps.context;
+        var configs = tmpProps.configs;
+        var content = tmpProps.content;
+        var contextMobile = tmpProps.contextMobile;
+        var configsMobile = tmpProps.configsMobile;
+        var contentMobile = tmpProps.contentMobile;
+        var blockAnchor = tmpProps.blockAnchor;
+
+        var queryID = $htmlEncode(ctx.ClientControl.get_nextUniqueId());
+        var blockSectionClass = mainClass + "_" + queryID;
+        if (blockAnchor == "") {
+            blockAnchor = queryID + '_sectionAnchor';
+        }
+
+         //obj no ctx para guardar info dos itens
+        ctx.itemsContent = [];
+        ctx.itemsContentMobile = [];
+
+      var render = {
+          getComponent: function(){
+              System.import('app/blocks/notes/notesApp.min.js')
+                  .then(function (module) {
+                      module.renderComponent(
+                          document.getElementById(blockAnchor),
+                          context,
+                          configs,
+                          content,
+                          contextMobile,
+                          configsMobile,
+                          contentMobile,
+                          displayMode
+                      );
+                  })
+                  .catch(function (err) {
+                      console.error(err);
+                  });
+          }
+      };
+
+      ctx.OnPostRender.push(function(){
+           content.data = ctx.itemsContent;
+           contentMobile.data = ctx.itemsContentMobile;
+           render.getComponent();
+      });
+
+
+    ms_outHtml.push(''
+,'        <div id="', blockAnchor ,'" data-site-context="moche" class="', blockSectionClass ,'">'
+,'            <!-- react goes here -->'
+,'            ', ctx.RenderGroups(ctx) ,''
+,'        </div>'
+,''
+,'    '
+);
+
+  ctx['DisplayTemplateData'] = cachePreviousTemplateData;
+  return ms_outHtml.join('');
+}
+function RegisterTemplate_f3d7f1e43b56499fb62a664caf9e3d25() {
+
+if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
+  Srch.U.registerRenderTemplateByName("Control_Bloco_Notas", DisplayTemplate_f3d7f1e43b56499fb62a664caf9e3d25);
+}
+
+if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
+  Srch.U.registerRenderTemplateByName("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fControl_Notas.js", DisplayTemplate_f3d7f1e43b56499fb62a664caf9e3d25);
+}
+//
+        $includeLanguageScript("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fControl_Notas.js", "~sitecollection/_catalogs/masterpage/Display Templates/Language Files/{Locale}/CustomStrings.js");
+        var helperUrl = ISites.Configurations.CDN.URL.startsWith("/") ? location.protocol + ISites.Configurations.CDN.URL + "/Style Library/consumo/js/displaytemplateshelperjs/displaytemplateshelper.js" :
+            ISites.Configurations.CDN.URL + "/Style Library/consumo/js/displaytemplateshelperjs/displaytemplateshelper.js";
+        $includeScript("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fControl_Notas.js", helperUrl);
+    //
+}
+RegisterTemplate_f3d7f1e43b56499fb62a664caf9e3d25();
+if (typeof(RegisterModuleInit) == "function" && typeof(Srch.U.replaceUrlTokens) == "function") {
+  RegisterModuleInit(Srch.U.replaceUrlTokens("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fControl_Notas.js"), RegisterTemplate_f3d7f1e43b56499fb62a664caf9e3d25);
+}

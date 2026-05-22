@@ -1,0 +1,180 @@
+/* Este ficheiro está atualmente associado a um ficheiro HTML com o mesmo nome e está a retirar conteúdo do mesmo. Até os ficheiros serem desassociados, não conseguirá mover, eliminar, mudar o nome ou fazer quaisquer alterações a este ficheiro. */
+
+function DisplayTemplate_c701776263a147dfafb920e5d2065b3a(ctx) {
+  var ms_outHtml=[];
+  var cachePreviousTemplateData = ctx['DisplayTemplateData'];
+  ctx['DisplayTemplateData'] = new Object();
+  DisplayTemplate_c701776263a147dfafb920e5d2065b3a.DisplayTemplateData = ctx['DisplayTemplateData'];
+
+  ctx['DisplayTemplateData']['TemplateUrl']='~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fV4_Item_BlocoOverlay.js';
+  ctx['DisplayTemplateData']['TemplateType']='Item';
+  ctx['DisplayTemplateData']['TargetControlType']=['Content Web Parts'];
+  this.DisplayTemplateData = ctx['DisplayTemplateData'];
+
+  ctx['DisplayTemplateData']['ManagedPropertyMapping']={'BlockId':['ISiteColumnBlockIDOWSTEXT'], 'TitleLvl1':['ISiteColumnItemTitleOWSMTXT'], 'TitleLvl2':['ISiteColumnSubTitleOWSMTXT'], 'Description':['ISiteColumnItemDescriptionOWSMTXT'], 'ImageList':['ISiteColumnImageListOWSMTXT'], 'TitleLvl1Mobile':['ISiteColumnItemTitleMobileOWSMTXT'], 'TitleLvl2Mobile':['ISiteColumnSubTitleMobileOWSMTXT'], 'DescriptionMobile':['ISiteColumnItemDescriptionMobileOWSMTXT'], '':null};
+  var cachePreviousItemValuesFunction = ctx['ItemValues'];
+  ctx['ItemValues'] = function(slotOrPropName) {
+    return Srch.ValueInfo.getCachedCtxItemValue(ctx, slotOrPropName)
+};
+
+ms_outHtml.push('',''
+,''
+);
+        var blockId = $getItemValue(ctx, "BlockId");
+        var titleLvl1 = $getItemValue(ctx, "TitleLvl1");
+        var titleLvl2 = $getItemValue(ctx, "TitleLvl2");
+        var description = $getItemValue(ctx, "Description");
+        var titleLvl1Mobile = $getItemValue(ctx, "TitleLvl1Mobile");
+        var titleLvl2Mobile = $getItemValue(ctx, "TitleLvl2Mobile");
+        var descriptionMobile = $getItemValue(ctx, "DescriptionMobile");
+        var imageList = $getItemValue(ctx, "ImageList");
+        if(!imageList.isEmpty) {
+            try {
+                var imageListJson = JSON.parse(imageList.value);
+            }
+            catch(e) {
+               //alert('invalid json');
+            }
+        }
+        var imgSrc = "";
+        var imgAlt = "";
+
+        if(typeof imageListJson != 'undefined' && imageListJson.length > 0 && (typeof imageListJson[0].url != 'undefined') && imageListJson[0].url != ""){
+            if(typeof imageListJson[0].type != 'undefined' && (imageListJson[0].type == "detail" || imageListJson[0].type.indexOf("background") == 0 || imageListJson[0].type.indexOf("image") == 0)){
+                imgSrc = imageListJson[0].url;
+                imgAlt = imageListJson[0].title;
+            }
+        }
+
+        //If mobile and mobile fields set, override desktop fields
+        if(curDisplayMode == "mobile"){
+            if(titleLvl1Mobile.value != null && titleLvl1Mobile.value == "<no-mobile>")
+                titleLvl1.value = "";
+            else if(titleLvl1Mobile.value != null && titleLvl1Mobile.value != "")
+                titleLvl1.value = titleLvl1Mobile.value;
+
+            if(titleLvl2Mobile.value != null && titleLvl2Mobile.value == "<no-mobile>")
+                titleLvl2.value = "";
+            else if(titleLvl2Mobile.value != null && titleLvl2Mobile.value != "")
+                titleLvl2.value = titleLvl2Mobile.value;
+
+            if(descriptionMobile.value != null && descriptionMobile.value.replace("&lt;", "<").replace("&gt;", ">").indexOf("<no-mobile>") >= 0)
+                description.value = "";
+            else if(descriptionMobile.value != null && descriptionMobile.value != "")
+                description.value = descriptionMobile.value;
+        }
+
+        //Remove sp div from html field
+        if (!description.isEmpty) {
+            var badDiv = String('<div class="ExternalClass">');
+            if (description.value.substr(0, badDiv.length-2)==badDiv.substr(0,badDiv.length-2)){
+                var cleanDescription = description.value.substr(description.value.indexOf('>')+1, description.value.length);
+                cleanDescription = cleanDescription.substr(0, cleanDescription.lastIndexOf('</div>'));
+                description.value = cleanDescription;
+            }
+            var badPara = String('<p>');
+            if (description.value.substr(0, badPara.length)==badPara){
+                var cleanDescriptionPara = description.value.substr(badPara.length, description.value.length);
+                cleanDescriptionPara = cleanDescriptionPara.substr(0, cleanDescriptionPara.lastIndexOf('</p>'));
+                description.value = cleanDescriptionPara;
+            }
+        }
+
+        var queryID = ctx.ListData.QueryId;
+        var itemPropertiesClass = "";
+        var itemPropertiesStyle = "";
+
+        //Item text color
+        if(ctx.blockItemTextColor){
+            var index = 0;
+            if(ctx.blockItemTextColor.length - 1 >= ctx.CurrentItemIdx)
+                index = ctx.CurrentItemIdx;
+
+            itemPropertiesClass += " " + GetItemTextColorClass(ctx.blockItemTextColor[index]);
+        }
+
+        //Item background color
+        if(ctx.blockItemBackgroundColor){
+            var index = 0;
+            if(ctx.blockItemBackgroundColor.length - 1 >= ctx.CurrentItemIdx)
+                index = ctx.CurrentItemIdx;
+
+            if(ctx.blockItemBackgroundColor[index][0] != "#")
+                itemPropertiesClass += " " + GetItemBackgroundColorClass(ctx.blockItemBackgroundColor[index]);
+            else
+                itemPropertiesStyle += " background-color:" + ctx.blockItemBackgroundColor[index] + ";"
+        }
+    ms_outHtml.push(''
+); if (imageListJson && imageListJson.length > 1) {
+        //new 20180529
+        //more than 1 image, assume gallery block but without a href
+        for(var i = 0; i < imageListJson.length; i++){
+                var img = imageListJson[i];
+                var imgHref = "#" + queryID + "_" + ctx.GalleryIndex;
+                ctx.GalleryIndex++;
+                var imgSrc = img.url + "?RenditionID=5";
+                if(img.url != "" && (img.type == "imageXL" || img.type == "detail")){ ms_outHtml.push(''
+,'        <li>'
+,'            <div class="image-holder">'
+,'                <div class="image-wrap">'
+,'                    <img src="', imgSrc ,'" />'
+,'                </div>'
+,'            </div>'
+); if(img.type == "detail" && img.title != ""){ ms_outHtml.push(''
+,'            <div class="text-holder">'
+,'                <div class="text-wrap">'
+,'                    <p>', img.title ,'</p>'
+,'                </div>'
+,'            </div>'
+); }ms_outHtml.push(''
+,'        </li>'
+); }ms_outHtml.push(''
+); }
+
+    } else {ms_outHtml.push(''
+,'        <li>'
+);
+        //overlay normal styles
+        if(imgSrc != ""){ms_outHtml.push(''
+,'            <div class="image-holder">'
+,'                <div class="image-wrap">'
+,'                    <img src="', imgSrc ,'" alt="', imgAlt ,'" />'
+,'                </div>'
+,'            </div>'
+); } ms_outHtml.push(''
+,'            <div class="text-holder ', itemPropertiesClass ,'" style="', itemPropertiesStyle ,'">'
+,'                <div class="text-wrap">'
+); if(titleLvl1.value != null && titleLvl1.value != "")ms_outHtml.push(''
+,'                    <h2 class="title-level-title">', titleLvl1.value ,'</h2>'
+); if(titleLvl2.value != null && titleLvl2.value != "")ms_outHtml.push(''
+,'                    <h3 class="title-level-sub-title">', titleLvl2.value ,'</h3>'
+); if(description.value != null && description.value != "")ms_outHtml.push(''
+,'                    <p>', description.value ,'</p>'
+,'                </div>'
+,'            </div>'
+,'        </li>'
+); } ms_outHtml.push(''
+,'    '
+);
+
+  ctx['ItemValues'] = cachePreviousItemValuesFunction;
+  ctx['DisplayTemplateData'] = cachePreviousTemplateData;
+  return ms_outHtml.join('');
+}
+function RegisterTemplate_c701776263a147dfafb920e5d2065b3a() {
+
+if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
+  Srch.U.registerRenderTemplateByName("Item_Bloco_Overlay", DisplayTemplate_c701776263a147dfafb920e5d2065b3a);
+}
+
+if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
+  Srch.U.registerRenderTemplateByName("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fV4_Item_BlocoOverlay.js", DisplayTemplate_c701776263a147dfafb920e5d2065b3a);
+}
+//
+        $includeLanguageScript("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fV4_Item_BlocoOverlay.js", "~sitecollection/_catalogs/masterpage/Display Templates/Language Files/{Locale}/CustomStrings.js");
+    //
+}
+RegisterTemplate_c701776263a147dfafb920e5d2065b3a();
+if (typeof(RegisterModuleInit) == "function" && typeof(Srch.U.replaceUrlTokens) == "function") {
+  RegisterModuleInit(Srch.U.replaceUrlTokens("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fV4_Item_BlocoOverlay.js"), RegisterTemplate_c701776263a147dfafb920e5d2065b3a);
+}

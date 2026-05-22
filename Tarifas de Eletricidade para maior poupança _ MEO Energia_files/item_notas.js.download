@@ -1,0 +1,118 @@
+/* Este ficheiro está atualmente associado a um ficheiro HTML com o mesmo nome e está a retirar conteúdo do mesmo. Até os ficheiros serem desassociados, não conseguirá mover, eliminar, mudar o nome ou fazer quaisquer alterações a este ficheiro. */
+
+function DisplayTemplate_36dc8da6f79c497087248224be561f24(ctx) {
+  var ms_outHtml=[];
+  var cachePreviousTemplateData = ctx['DisplayTemplateData'];
+  ctx['DisplayTemplateData'] = new Object();
+  DisplayTemplate_36dc8da6f79c497087248224be561f24.DisplayTemplateData = ctx['DisplayTemplateData'];
+
+  ctx['DisplayTemplateData']['TemplateUrl']='~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fItem_Notas.js';
+  ctx['DisplayTemplateData']['TemplateType']='Item';
+  ctx['DisplayTemplateData']['TargetControlType']=['Content Web Parts'];
+  this.DisplayTemplateData = ctx['DisplayTemplateData'];
+
+  ctx['DisplayTemplateData']['ManagedPropertyMapping']={'BlockId':['ISiteColumnBlockIDOWSTEXT'], 'TitleLvl1':['ISiteColumnItemTitleOWSMTXT'], 'Description':['ISiteColumnItemDescriptionOWSMTXT'], 'TitleLvl1Mobile':['ISiteColumnItemTitleMobileOWSMTXT'], 'DescriptionMobile':['ISiteColumnItemDescriptionMobileOWSMTXT'], 'SubtitleLvl1':['ISiteColumnSubSubTitleOWSMTXT'], 'TitleLvl2':['ISiteColumnSubTitleOWSMTXT'], 'Countdown':['ISiteColumnCountdownOWSMTXT'], '':null};
+  var cachePreviousItemValuesFunction = ctx['ItemValues'];
+  ctx['ItemValues'] = function(slotOrPropName) {
+    return Srch.ValueInfo.getCachedCtxItemValue(ctx, slotOrPropName)
+};
+
+ms_outHtml.push('',''
+,''
+);
+
+                var siteContext = "meoenergia";
+
+                var blockId = $getItemValue(ctx, "BlockId");
+                var titleLvl1 = $getItemValue(ctx, "TitleLvl1");
+                var titleLvl2 = $getItemValue(ctx, "TitleLvl2");
+                var subtitleLvl1 = $getItemValue(ctx,"SubtitleLvl1");
+                var description = $getItemValue(ctx, "Description");
+                var titleLvl1Mobile = $getItemValue(ctx, "TitleLvl1Mobile");
+                var titleLvl2Mobile = $getItemValue(ctx, "TitleLvl2Mobile");
+                var subtitleLvl1Mobile = $getItemValue(ctx, "SubtitleLvl1Mobile");
+                var descriptionMobile = $getItemValue(ctx, "DescriptionMobile");
+
+                var BlockItemBackgroundColor = ctx.DataProvider.get_properties()["BlockItemBackgroundColor"];
+                var NewBlockBackgroundColor = ctx.DataProvider.get_properties()["NewBlockBackgroundColor"];
+
+                var itemData = {};
+                var itemDataMobile = {};
+                //build the item info
+                //itemData.id = ctx.CurrentItemIdx;
+                //itemDataMobile.id = ctx.CurrentItemIdx;
+
+                itemData.id = itemDataMobile.id = GetBlockId(blockId, ctx.CurrentItemIdx);
+
+                //get the texts props
+                var tmpTexts = GetTextsNewBlocks(titleLvl1, titleLvl2, subtitleLvl1, description, titleLvl1Mobile, titleLvl2Mobile, subtitleLvl1Mobile, descriptionMobile);
+
+                itemData.texts = tmpTexts.texts;
+                itemDataMobile.texts = tmpTexts.textsMobile;
+
+                var tmpBlockItemBackgroundColor = BlockItemBackgroundColor;
+                var tmpTextColorClass = "";
+                 //item bkgd color
+                if (typeof tmpBlockItemBackgroundColor != 'undefined')
+                {
+                    var textBkgdColors = tmpBlockItemBackgroundColor.split(",");
+                    if (textBkgdColors != null && textBkgdColors.length == 1)
+                    {
+                        tmpTextColorClass = GetItemBackgroundColorClass(textBkgdColors[0].trim());
+                        //divWrapper.addClass(tmpTextColorClass);
+                    }
+                    else if(textBkgdColors != null && textBkgdColors.length - 1 >= itemIdx){
+                        tmpTextColorClass = GetItemBackgroundColorClass(textBkgdColors[itemIdx].trim());
+                        //divWrapper.addClass(tmpTextColorClass);
+                    }
+                }
+
+                //novo AG 20230201 - countdowns
+                var countdown = $getItemValue(ctx, "Countdown");
+
+                if (!countdown.isEmpty)
+                {
+                    try {
+                        var countdownJson = JSON.parse(countdown.value);
+                    }
+                    catch(e) {
+                    }
+                }
+
+                if (countdownJson)
+                {
+                    itemData.countdown = GetCountdowns(countdownJson);
+                    itemDataMobile.countdown = GetCountdowns(countdownJson);
+                }
+
+                var queryID = ctx.ListData.QueryId;
+
+                //add the current item to the ctx object, for processing in the control dt
+                ctx.itemsContent.push(itemData);
+                ctx.itemsContentMobile.push(itemDataMobile);
+
+            ms_outHtml.push(''
+,'    '
+);
+
+  ctx['ItemValues'] = cachePreviousItemValuesFunction;
+  ctx['DisplayTemplateData'] = cachePreviousTemplateData;
+  return ms_outHtml.join('');
+}
+function RegisterTemplate_36dc8da6f79c497087248224be561f24() {
+
+if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
+  Srch.U.registerRenderTemplateByName("Item_Bloco_Notas", DisplayTemplate_36dc8da6f79c497087248224be561f24);
+}
+
+if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
+  Srch.U.registerRenderTemplateByName("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fItem_Notas.js", DisplayTemplate_36dc8da6f79c497087248224be561f24);
+}
+//
+        $includeLanguageScript("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fItem_Notas.js", "~sitecollection/_catalogs/masterpage/Display Templates/Language Files/{Locale}/CustomStrings.js");
+    //
+}
+RegisterTemplate_36dc8da6f79c497087248224be561f24();
+if (typeof(RegisterModuleInit) == "function" && typeof(Srch.U.replaceUrlTokens) == "function") {
+  RegisterModuleInit(Srch.U.replaceUrlTokens("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fItem_Notas.js"), RegisterTemplate_36dc8da6f79c497087248224be561f24);
+}

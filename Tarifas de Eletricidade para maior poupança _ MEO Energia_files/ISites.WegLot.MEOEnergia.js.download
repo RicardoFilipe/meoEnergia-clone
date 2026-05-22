@@ -1,0 +1,1 @@
+class ISitesWegLotMEOEnergia extends ISitesWegLot{constructor(){super("wg_4ce1b294d25c41deac5c562b094d504a1")}}var ISites=ISites||new Object;ISites.WegLot=ISites.WegLot||new ISitesWegLotMEOEnergia;

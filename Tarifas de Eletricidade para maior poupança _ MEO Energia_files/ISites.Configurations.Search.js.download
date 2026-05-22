@@ -1,0 +1,1 @@
+window.ISites=window.ISites||new Object,ISites.Configurations=ISites.Configurations||new Object,ISites.Configurations.Search={RestApi:{PublicHost:ISites.Configurations.Site.Url.SiteAbsoluteUrl,PostEndPoint:"/_api/search/postquery"},CDN:{DocumentsUrl:"/meoenergia/documentos/pt"}};

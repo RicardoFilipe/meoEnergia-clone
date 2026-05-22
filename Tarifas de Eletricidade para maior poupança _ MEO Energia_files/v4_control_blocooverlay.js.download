@@ -1,0 +1,212 @@
+/* Este ficheiro está atualmente associado a um ficheiro HTML com o mesmo nome e está a retirar conteúdo do mesmo. Até os ficheiros serem desassociados, não conseguirá mover, eliminar, mudar o nome ou fazer quaisquer alterações a este ficheiro. */
+
+function DisplayTemplate_497bba3457244872a6ad3f0825fbf2cb(ctx) {
+  var ms_outHtml=[];
+  var cachePreviousTemplateData = ctx['DisplayTemplateData'];
+  ctx['DisplayTemplateData'] = new Object();
+  DisplayTemplate_497bba3457244872a6ad3f0825fbf2cb.DisplayTemplateData = ctx['DisplayTemplateData'];
+
+  ctx['DisplayTemplateData']['TemplateUrl']='~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fV4_Control_BlocoOverlay.js';
+  ctx['DisplayTemplateData']['TemplateType']='Control';
+  ctx['DisplayTemplateData']['TargetControlType']=['Content Web Parts'];
+  this.DisplayTemplateData = ctx['DisplayTemplateData'];
+
+ms_outHtml.push('',''
+,''
+,''
+);
+		var mainClass = "block-overlay";
+
+		if (!$isNull(ctx.ClientControl) &&
+		!$isNull(ctx.ClientControl.shouldRenderControl) &&
+		!ctx.ClientControl.shouldRenderControl())
+		{
+		return "";
+		}
+
+		ctx.ListDataJSONGroupsKey = "ResultTables";
+		var $noResults = Srch.ContentBySearch.getControlTemplateEncodedNoResultsMessage(ctx.ClientControl);
+
+		var noResultsClassName = "ms-srch-result-noResults";
+
+		var ListRenderRenderWrapper = function(itemRenderResult, inCtx, tpl)
+		{
+		var iStr = [];
+		iStr.push(itemRenderResult);
+		return iStr.join('');
+		}
+		ctx['ItemRenderWrapper'] = ListRenderRenderWrapper;
+
+		ctx.OnPostRender = [];
+
+
+		var displayMode = ctx.DataProvider.get_properties()["BlockDeviceVisibility"];
+		var containerClass = $htmlEncode(ctx.ClientControl.get_nextUniqueId() + "_hide");
+
+
+		//set the visibility on the ctx, to read in the item
+		ctx.Visibility = displayMode;
+
+		ctx.timer = false;
+		ctx.lastClientWidth = window.innerWidth;
+		ctx.OnPostRender.push(function(){
+		$(window).on('resize.' + ctx.ClientControl.get_id(), (function(a) {
+			  return function() {
+				rtime = new Date();
+				if (a.timer === false) {
+								a.timer = true;
+								setTimeout(function () { resizeend(a) }, 200);
+				}
+			};
+		})(ctx));
+	 });
+
+
+	if(isWebpartToShow(displayMode)){
+
+		var BlockAnchor = ctx.DataProvider.get_properties()["BlockAnchor"];
+
+		//Estilos
+		var BlockNewTextAlignment = ctx.DataProvider.get_properties()["BlockNewTextAlignment"];
+		var NewBlockBackgroundColor = ctx.DataProvider.get_properties()["NewBlockBackgroundColor"];
+		var BlockBGImg = ctx.DataProvider.get_properties()["BlockBackgroundImage"];
+		var BlockItemBackgroundColor = ctx.DataProvider.get_properties()["BlockItemBackgroundColor"];
+
+		//Item background color set on the item
+		if (BlockItemBackgroundColor != "" && BlockItemBackgroundColor != undefined)
+		{
+			var tmpBlockItemBackgroundColorArray = BlockItemBackgroundColor.split(",");
+			if (tmpBlockItemBackgroundColorArray != null && tmpBlockItemBackgroundColorArray.length > 0)
+				ctx.blockItemBackgroundColor = tmpBlockItemBackgroundColorArray;
+		}
+
+		var BlockItemTextColor = "";
+		//Check if mobile or desktop
+		if(curDisplayMode == "desktop")
+			BlockItemTextColor = ctx.DataProvider.get_properties()["BlockItemTextColor"];
+		else
+			BlockItemTextColor = ctx.DataProvider.get_properties()["BlockItemTextColorMobile"];
+
+		//Item text color set on the item
+		if (BlockItemTextColor != "" && BlockItemTextColor != undefined)
+		{
+			var tmpBlockItemTextColorArray = BlockItemTextColor.split(",");
+			if (tmpBlockItemTextColorArray != null && tmpBlockItemTextColorArray.length > 0)
+				ctx.blockItemTextColor = tmpBlockItemTextColorArray;
+		}
+
+		//Configurações
+		var BlockExtraClasses = ctx.DataProvider.get_properties()["BlockExtraClasses"];
+		var BlockExtraParams =  ctx.DataProvider.get_properties()["BlockExtraParameters"];
+
+		var queryID = $htmlEncode(ctx.ClientControl.get_nextUniqueId());
+
+		var render = {
+			anchor: function () {
+				if (BlockAnchor == "") {
+					BlockAnchor = queryID + '_sectionAnchor';
+				}
+				else if(BlockAnchor.length > 0 && BlockAnchor[0] == "#")
+					BlockAnchor = BlockAnchor.split(1,BlockAnchor.length);
+			},
+			mainClass: function () {
+				$('#' + BlockAnchor).addClass(mainClass);
+			},
+			blockProperties: function () {
+				var tmpBlockNewTextAlignment = BlockNewTextAlignment;
+				var tmpNewBlockBackgroundColor = NewBlockBackgroundColor;
+				var tmpBlockBGImg = BlockBGImg;
+				var tmpBlockExtraClasses = BlockExtraClasses;
+				var tmpBlockExtraParams = BlockExtraParams;
+
+				if (tmpBlockNewTextAlignment != "" && tmpBlockNewTextAlignment != undefined)
+					$('#'+ queryID + '_divContentHolder').addClass(tmpBlockNewTextAlignment);
+
+				if (tmpNewBlockBackgroundColor != "" && tmpNewBlockBackgroundColor != undefined)
+					$('#'+ queryID + '_divContentHolder').addClass(GetBlockBackgroundColorClass(tmpNewBlockBackgroundColor));
+
+				if (tmpBlockBGImg != "" && tmpBlockBGImg != undefined) {
+				var bgImgArray = tmpBlockBGImg.split(",");
+					if (bgImgArray != null && bgImgArray.length > 0) {
+						var bgImg = bgImgArray[0];
+					   $('#'+ queryID + '_divContentHolder').css('background-image', 'url(' + bgImg + ')');
+					}
+				}
+
+				if (tmpBlockExtraClasses != "")
+					$('#' + BlockAnchor).addClass(tmpBlockExtraClasses);
+
+				if (tmpBlockExtraParams != "")
+					this.extraParamsHelper(tmpBlockExtraParams);
+			},
+
+			extraParamsHelper: function (BlockExtraParams) {
+				try {
+					var tempProp;
+					//the helper function is now on the displaytemplatehelper.js script
+					$.each(parseExtraParams(BlockExtraParams).split("!#_nextParam_#!"), function( index, value ) {
+						tempProp = value.split("=");
+						$('#' + BlockAnchor).attr(tempProp[0], tempProp[1].replace(/"|'/g, ''));
+					});
+				}
+				catch(err) {
+					//message.innerHTML = "Input is " + err;
+				}
+			},
+		};
+
+		render.anchor();
+
+		ctx.OnPostRender.push(function(){
+			render.mainClass();
+			render.blockProperties();
+			if (MEOLib.refresh)
+				MEOLib.refresh();
+		});
+
+		ms_outHtml.push(''
+,'		<section id="', BlockAnchor ,'">'
+,'			<div id="', queryID ,'_divPart" class="part">'
+,'				<div id="', queryID ,'_divContentHolder" class="content-holder">'
+,'					<ul>', ctx.RenderGroups(ctx) ,'</ul>'
+,'					<a href="#" class="close-overlay "></a>'
+,'				</div>'
+,''
+,'			</div>'
+,'		</section>'
+);
+	}
+	{
+	ms_outHtml.push(''
+,''
+,'		<div class="', containerClass ,'"></div>'
+,''
+);
+	}
+	ms_outHtml.push(''
+,'	'
+);
+
+  ctx['DisplayTemplateData'] = cachePreviousTemplateData;
+  return ms_outHtml.join('');
+}
+function RegisterTemplate_497bba3457244872a6ad3f0825fbf2cb() {
+
+if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
+  Srch.U.registerRenderTemplateByName("Control_Bloco_Overlay", DisplayTemplate_497bba3457244872a6ad3f0825fbf2cb);
+}
+
+if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
+  Srch.U.registerRenderTemplateByName("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fV4_Control_BlocoOverlay.js", DisplayTemplate_497bba3457244872a6ad3f0825fbf2cb);
+}
+//
+        $includeLanguageScript("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fV4_Control_BlocoOverlay.js", "~sitecollection/_catalogs/masterpage/Display Templates/Language Files/{Locale}/CustomStrings.js");
+        var helperUrl = ISites.Configurations.CDN.URL.startsWith("/") ? location.protocol + ISites.Configurations.CDN.URL + "/Style Library/consumo/js/displaytemplateshelperjs/displaytemplateshelper.js" :
+            ISites.Configurations.CDN.URL + "/Style Library/consumo/js/displaytemplateshelperjs/displaytemplateshelper.js";
+        $includeScript("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fV4_Control_BlocoOverlay.js", helperUrl);
+    //
+}
+RegisterTemplate_497bba3457244872a6ad3f0825fbf2cb();
+if (typeof(RegisterModuleInit) == "function" && typeof(Srch.U.replaceUrlTokens) == "function") {
+  RegisterModuleInit(Srch.U.replaceUrlTokens("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fContent Web Parts\u002fmeoenergia\u002fV4_Control_BlocoOverlay.js"), RegisterTemplate_497bba3457244872a6ad3f0825fbf2cb);
+}
