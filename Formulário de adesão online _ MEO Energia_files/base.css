@@ -1,0 +1,115 @@
+.bs-survey {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font: 14px/17px 'Montserrat', arial, helvetica, sans-serif;
+    padding: 0;
+    background-color: #fff;
+}
+
+.bs-survey .bs-question-wrapper {
+    padding: 10px 0 10px 0;
+}
+
+.bs-survey .bs-question-wrapper .bs-question-label {
+    margin-bottom: 5px;
+}
+
+.bs-survey .bs-question-wrapper .bs-question-label label {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.bs-survey .bs-question-wrapper .bs-question-label p {
+    margin: 0;
+    padding-top: 5px;
+    font-size: 13px;
+    color: #7a7e82;
+}
+
+.bs-survey .bs-question-wrapper.error .bs-question-label label {
+    color: #ff0000;
+}
+
+.bs-survey .bs-question-wrapper.bs-question-text .bs-question-field input,
+.bs-survey .bs-question-wrapper.bs-question-email .bs-question-field input,
+.bs-survey .bs-question-wrapper.bs-question-vat .bs-question-field input,
+.bs-survey .bs-question-wrapper.bs-question-password .bs-question-field input,
+.bs-survey .bs-question-wrapper.bs-question-number .bs-question-field input {
+    border: 1px solid #d4d2d2;
+    width: 100%;
+    height: 28px;
+}
+
+.bs-survey .bs-question-wrapper.bs-question-textarea .bs-question-field textarea {
+    border: 1px solid #d4d2d2;
+    width: 100%;
+    height: 90px;
+}
+
+.bs-survey .bs-question-wrapper.bs-question-checkbox .bs-question-field .bs-checkbox-container,
+.bs-survey .bs-question-wrapper.bs-question-mood .bs-question-field .bs-radio-container,
+.bs-survey .bs-question-wrapper.bs-question-nps .bs-question-field .bs-radio-container,
+.bs-survey .bs-question-wrapper.bs-question-radio .bs-question-field .bs-radio-container {
+    padding: 3px 0 3px 0;
+}
+
+.bs-survey .bs-question-wrapper.bs-question-checkbox .bs-question-field .bs-checkbox-container label,
+.bs-survey .bs-question-wrapper.bs-question-mood .bs-question-field .bs-radio-container label,
+.bs-survey .bs-question-wrapper.bs-question-nps .bs-question-field .bs-radio-container label,
+.bs-survey .bs-question-wrapper.bs-question-radio .bs-question-field .bs-radio-container label,
+.bs-survey .bs-question-wrapper.bs-question-checkboxlink .bs-question-field a {
+    margin-left: 5px;
+}
+
+.bs-survey .bs-question-wrapper.bs-question-radio .bs-question-field .horizontal {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bs-survey .bs-question-wrapper.bs-question-matrix .bs-question-field table tr td {
+    text-align: center;
+    padding: 3px 0 3px 0;
+}
+
+.bs-survey .bs-question-wrapper.bs-question-matrix .bs-question-field tr th,
+.bs-survey .bs-question-wrapper.bs-question-custommatrix .bs-question-field tr th,
+.bs-survey .bs-question-wrapper.bs-question-matrix .bs-question-field tr td:first-child {
+    font-size: 14px;
+    padding: 7px;
+}
+
+.bs-survey .bs-question-wrapper.bs-question-custommatrix .bs-question-field tr td input {
+    border: 1px solid #d4d2d2;
+    height: 25px;
+}
+
+.bs-survey .bs-question-wrapper.bs-question-groupbranches .bs-question-field select:first-child {
+    margin-right: 10px;
+}
+
+.bs-survey .bs-survey-paging {
+    margin: 5px 0 5px 0;
+}
+
+.bs-survey .bs-survey-paging .paging-next {
+    padding-left: 7px;
+}
+
+.bs-survey .bs-survey-paging .paging-previous {
+    padding-right: 7px;
+}
+
+.bs-survey .bs-btn-container {
+    margin-top: 15px;
+}
+
+.bs-survey .bs-btn-container .bs-btn {
+    width: 130px;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+.bs-survey .bs-btn-container .bs-btn:not(:last-child) {
+    margin-right: 10px;
+}

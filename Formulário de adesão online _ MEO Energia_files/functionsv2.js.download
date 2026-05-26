@@ -1,0 +1,1 @@
+﻿$(window).on("load", function () { var o = document.forms[MSOWebPartPageFormName].MSOLayout_InDesignMode.value; "1" == o ? jQuery("body").addClass("editionMode") : jQuery("body").addClass("userMode") });

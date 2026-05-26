@@ -59,6 +59,9 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
 <link rel="preload" href="https://conteudos.meo.pt/Style%20Library/Brand/resources/fonts/Montserrat-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <link rel="preload" href="https://conteudos.meo.pt/Style%20Library/Brand/resources/fonts/Montserrat-Light.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <link rel="preload" href="https://conteudos.meo.pt/Style%20Library/Brand/resources/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
 
 <!-- meta tags, favicon -->
 
@@ -1490,7 +1493,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager', 'aspnetForm',
                     </div>
                 </noscript>
 
-                <header id="header">
+               <!--  <header id="header">
                     <main-menu id="main-menu-v5">
                         <div class="main-menu-v5 isitesmeoenergia">
                             <section class="top-nav-bar" id="top-nav-bar"><section class="top-nav-bar-one"><ul class="menu-hyperlinks"><li class="is-active"><a class="" href="https://www.meoenergia.pt" target="_self" rel="" data-eventregion="MEOENERGIA_TOPO" data-eventclick="M_E" data-eventtitle="Particulares" data-eventlink="https://www.meoenergia.pt"><span class="hyperlinks-txt">Particulares</span></a></li><li class=""><a class="" href="https://www.meoenergia.pt/empresas" target="_self" rel="" data-eventregion="MEOENERGIA_TOPO" data-eventclick="M_E" data-eventtitle="Empresas" data-eventlink="https://www.meoenergia.pt/empresas"><span class="hyperlinks-txt">Empresas</span></a></li></ul></section><section class="top-nav-bar-two"></section><section class="top-nav-bar-three"><ul class="menu-hyperlinks"><li class="is-active"><a class="" href="https://www.meo.pt/" target="_blank" rel="noopener noreferrer" data-eventregion="MEOENERGIA_TOPO" data-eventclick="M_E" data-eventtitle="meo.pt" data-eventlink="https://www.meo.pt/"><span class="hyperlinks-txt">meo.pt</span></a></li></ul><div class="language-selector-toggle en"><button type="button" class="language-selector-btn" aria-label="Switch to English">English</button></div></section></section>
@@ -1505,17 +1508,11 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager', 'aspnetForm',
                             <section class="toggle-nav-bar" id="toggle-nav-bar"></section>
                         </div>
                     </main-menu>
-
-
-
-
-
-
-                    <!-- content rendered by menuv5.js -->
+                    // content rendered by menuv5.js
                     <script type="text/javascript">
                         CreateFullHeader(false, false, "", "", "", "", "", "", "isitesmeoenergia", false, false, "", true, true, false, "", true, true, true, false, false, true, false, false, false, null, null, false, false);
                     </script>
-                </header>
+                </header> -->
                 <main>
                     <!-- ===== STARTER: Main Placeholder gets replaced with content of the page ======================================= -->
                     
@@ -1530,13 +1527,19 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager', 'aspnetForm',
                 <div id="beneficios" data-site-context="meoenergia" class="block-multimedia_ctl00_SPWebPartManager1_g_e314dc2f_0890_4da9_886d_e7fa9a5d7568_csr2"><article data-react-block="true" class="block-multimedia bg-color-5"><div class="part  bg-color-1">
                     <div class="image-holder">
                         <div class="image-wrap">
-                            <picture class="">
-                                <source 
-                                media="(min-width:1200px)" 
-                                srcset="https://www.meoenergia.pt/PublishingImages/eletricidade/energia-dados-ilimitados-meo-energia-slideshow-xl.webp" type="image/webp"><source media="(min-width:960px)" srcset="/PublishingImages/empresas/paginas/eletricidade/dados-ilimitados-meo-energia-premium-l.webp" type="image/webp"><source media="(min-width:768px)" srcset="/PublishingImages/empresas/paginas/eletricidade/dados-ilimitados-meo-energia-premium-m.webp" type="image/webp"><source srcset="/PublishingImages/empresas/paginas/eletricidade/dados-ilimitados-meo-energia-premium-s.webp" type="image/webp">
-                                <img class="lazy-loading" loading="lazy" src="./Tarifas de Eletricidade para maior poupança _ MEO Energia_files/dados-ilimitados-meo-energia-premium-m.webp" decoding="async" alt="" width="960" height="430" aria-hidden="true">
-                                
-                            </picture>
+                                <picture class="">
+                                <!-- Responsive sources: mobile uses the smaller image (max-width:959px),
+                                     larger screens use the 1200px image (min-width:960px) -->
+                                <source media="(min-width:960px)" 
+                                    srcset="https://www.meoenergia.pt/PublishingImages/eletricidade/energia-dados-ilimitados-meo-energia-slideshow-xl.webp" 
+                                    type="image/webp">
+                                <source media="(max-width:959px)" 
+                                    srcset="https://www.meoenergia.pt/PublishingImages/eletricidade/energia-dados-ilimitados-meo-energia-slideshow-xs.webp" 
+                                    type="image/webp">
+                                <img class="lazy-loading" loading="lazy"
+                                     src="https://www.meoenergia.pt/PublishingImages/eletricidade/energia-dados-ilimitados-meo-energia-slideshow-xl.webp"
+                                     decoding="async" alt="" width="960" height="430" aria-hidden="true">
+                                </picture>
                         </div>
                     </div>
                 <div class="text-holder txt-color-2">
@@ -1550,12 +1553,13 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager', 'aspnetForm',
                         <picture class="">
                         <source media="(min-width:960px)" 
                         srcset="https://www.meoenergia.pt/PublishingImages/logos/eletricidade-logo-mobile.webp" type="image/webp">
-                        <source srcset="/PublishingImages/logos/eletricidade-logo-mobile.webp" type="image/webp">
-                        <img class="lazy-loading" loading="lazy" src="./Tarifas de Eletricidade para maior poupança _ MEO Energia_files/eletricidade-logo-mobile.webp" decoding="async" alt="" width="212" height="38" aria-hidden="true">
-                        </picture><!-- 
-                        <h1 class="title-level-additional-text"> Tarifas de eletricidade</h1> -->
-                        <p class="title-level-sub-title" style="font-size: 38px;"> Dados ilimitados e 2x MEOS</p>
-                        <p class="title-level-description" style="font-size: 20px;">Poupa na energia, não nos momentos.</p>
+                        <source srcset="https://www.meoenergia.pt/PublishingImages/logos/eletricidade-logo-mobile.webp" type="image/webp">
+                        <img class="lazy-loading" loading="lazy" 
+                        src="https://www.meoenergia.pt/PublishingImages/logos/eletricidade-logo-mobile.webp"
+                        decoding="async" alt="" width="250" height="45" aria-hidden="true">
+                        </picture>
+                        <p class="title-level-title">Dados ilimitados e 2x MEOS</p>
+                        <p class="title-level-additional-text">Poupa na energia, não nos momentos.</p>
                         <ul class="hyperlinks">
                             <li>
                                 <a data-toggle="false" data-eventregion="Header.1" data-eventclick="Conhecer" data-eventtitle="Dados ilimitados e 2x MEOS" data-eventlink="/eletricidade" target="" href="/eletricidade" class="btn-primary btn-color-5 ">
@@ -2121,6 +2125,112 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager', 'aspnetForm',
 		}
         .bbo_resumo_form2lead .fieldset {
             padding-right: 0 !important;
+        }
+    }
+
+    /* CUSTOM: Mobile overlay for text on image - improved height, logo visibility, and green overlay */
+    @media screen and (max-width: 959px) {
+        /* Force the multimedia block to match original page height */
+        .block-multimedia_ctl00_SPWebPartManager1_g_e314dc2f_0890_4da9_886d_e7fa9a5d7568_csr2,
+        .block-multimedia_ctl00_SPWebPartManager1_g_e314dc2f_0890_4da9_886d_e7fa9a5d7568_csr2 .part {
+            min-height: 473px;
+            height: 473px;
+        }
+
+        .block-multimedia .part {
+            position: relative;
+            display: block;
+        }
+
+        .block-multimedia .image-holder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            border-radius: 14px;
+        }
+
+        .block-multimedia .image-wrap img,
+        .block-multimedia .image-wrap picture {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Green rounded overlay box sitting above the image */
+        .block-multimedia .text-holder {
+            position: absolute;
+            bottom: 0px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            font-family: "Montserrat", Arial, sans-serif;
+        }
+
+        .block-multimedia .text-holder .text-wrap {
+            position: relative;
+            z-index: 2;
+            padding-bottom: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 37%, rgba(0,0,0,0.35) 65%, rgba(0,0,0,0.05) 84%, transparent 100%);
+        }
+
+        /* Ensure logo/picture inside text-holder is visible on mobile */
+        .block-multimedia .text-holder picture { display: block; margin-bottom: 8px; }
+        .block-multimedia .text-holder img { max-width: 250px; height: auto; display: block; }
+
+        .block-multimedia .text-holder .stamp-bottom {
+            font-family: "Montserrat", Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1.25;
+            margin-bottom: 6px;
+        }
+
+        .block-multimedia .text-holder .stamp-top {
+            font-family: "Arial", Arial, sans-serif;
+            font-size: 38px;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .block-multimedia .text-holder .stamp-top sup {
+            font-family: "Montserrat", Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1.2;
+            vertical-align: super;
+        }
+
+        .block-multimedia .text-holder .title-level-title {
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 1.05;
+            margin: 6px 0 8px 0;
+        }
+
+        .block-multimedia .text-holder .title-level-additional-text {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 30px;
+            height: 30px;
+            margin: 0 0 12px 0;
+            opacity: 0.98;
+        }
+
+        .block-multimedia .text-holder .hyperlinks { margin-top: 6px; }
+
+        .block-multimedia .text-holder .btn-primary.btn-color-5,
+        .block-multimedia .text-holder .btn-primary.btn-color-5 * {
+            font-family: "Montserrat", Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
         }
     }
 

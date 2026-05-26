@@ -17,20 +17,20 @@ AFTER HEADER – GOTO C2C
 }
 .goto-c2c p {
   margin: 14px 0 12px;
-  font-family: Roboto;
+  font-family: "Montserrat", Arial, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
   text-align: center;
 }
 .goto-c2c button {
-  background-color: #d6e300;
-  color: #000;
+  background-color: #2e26ff;
+  color: #fff;
   cursor: pointer;
   width: 100%;
   height: 29px;
   padding: 5px 10px 6px;
-  font-family: Dosis;
+  font-family: "Montserrat", Arial, sans-serif;
   font-weight: 700;
   font-size: 14px;
   text-transform: uppercase;
@@ -54,9 +54,14 @@ BEFORE MESSAGE LIST – C2C
   justify-content: center;
   .call_fill_data p:first-of-type {
     color: #00c24f;
+    font-family: "Montserrat", Arial, sans-serif;
   }
 }
 
+.c2c .webcareslot1 .cmec_bg .cmec_content .call_fill_data .button-call button {
+  background-color: #2e26ff;
+  color: #fff;
+}
 
 /* ===============================
 AFTER MESSAGE LIST – GOTO VA
