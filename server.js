@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const app = express();
 const PORT = 3000;
-const FORM_FILE = 'Formulário de adesão online _ MEO Energia.html';
+const FORM_FILE = 'formularioMEoEnergia.html';
 const FORM_PATH = path.join(__dirname, FORM_FILE);
 
 // case-insensitive routing

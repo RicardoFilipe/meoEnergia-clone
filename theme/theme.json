@@ -5,6 +5,7 @@
     "fonts": [],
     "minimizedMode": "circle",
     "openChatOnHeaderClick": true,
+    "trigger": "start_ola2021",
     "mic": true,
     "isModal": true,
     "micPlaceholder": "A ouvir...",

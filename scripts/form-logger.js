@@ -31,7 +31,7 @@
 
   // Intercept submit buttons clicked via JS (BySideData submits this way)
   document.addEventListener('click', function (e) {
-    const btn = e.target.closest('button[type="submit"], input[type="submit"], button[onclick*="submit"], button[onclick*="Submit"]');
+    const btn = e.target.closest('button[type="submit"], input[type="submit"], button[onclick*="submit"], button[onclick*="Submit"], button[onclick*="validateForm"], input[onclick*="validateForm"]');
     if (!btn) return;
     const form = btn.closest('form');
     if (form) {
