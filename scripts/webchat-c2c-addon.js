@@ -37,6 +37,14 @@ async function initAddon() {
         }
     });
 
+    chatbot.addEventListener("chat-action-event", (e) => {
+
+        console.log('Chat action event:', e.detail);
+
+        if (e.detail?.action === 'messageSent') {
+            endC2CMode()
+        }
+    });
     setTimeout(() => {
         startC2CMode()
     }, 500);

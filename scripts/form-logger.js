@@ -54,10 +54,10 @@
 
   XMLHttpRequest.prototype.send = function (body) {
     if (body && this._logUrl) {
-      console.log('%c[XHR Form Submit]', 'color:#00c24f;font-weight:bold',
+      /* console.log('%c[XHR Form Submit]', 'color:#00c24f;font-weight:bold',
         this._logMethod, this._logUrl,
         typeof body === 'string' ? body : '[FormData/Binary]'
-      );
+      ); */
     }
     return origSend.apply(this, arguments);
   };
@@ -65,14 +65,6 @@
   // Intercept fetch — in case fetch is used for form submission
   const origFetch = window.fetch;
   window.fetch = function (input, init) {
-    if (init && (init.method === 'POST' || init.method === 'post') && init.body) {
-      console.log('%c[Fetch Form Submit]', 'color:#00c24f;font-weight:bold',
-        input,
-        typeof init.body === 'string' ? init.body : '[FormData/Binary]'
-      );
-    }
     return origFetch.apply(this, arguments);
   };
-
-  console.log('%c[form-logger] active', 'color:#00c24f;font-weight:bold');
 })();
