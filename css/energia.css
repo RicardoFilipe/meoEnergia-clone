@@ -310,19 +310,20 @@
   line-height: 12px;
   padding: 12px;
   font-weight: 600;
-  border-radius: 10px;
-  border: solid 1px #00c24f;
-  color: #000000;
+  border-radius: 20px;
+  border: 1px solid #2E26FF;
+  color: #fff;
   text-transform: uppercase;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  background-color: transparent;
+  background-color: #2E26FF;
 }
 #bsc-chat-container .bsc-message-list .bsc-message-list-container .bsc-local .bsc-message-menuButtons-vertical :hover, #bsc-chat-container .bsc-message-list .bsc-message-list-container .bsc-local .bsc-message-menuButtons-horizontal :hover, #bsc-chat-container .bsc-message-list .bsc-message-list-container .bsc-local .bsc-message-menuButtons-grid :hover,
 #bsc-chat-container .bsc-message-list .bsc-message-list-container .bsc-remote .bsc-message-menuButtons-vertical :hover,
 #bsc-chat-container .bsc-message-list .bsc-message-list-container .bsc-remote .bsc-message-menuButtons-horizontal :hover,
 #bsc-chat-container .bsc-message-list .bsc-message-list-container .bsc-remote .bsc-message-menuButtons-grid :hover {
-  color: white;
-  background-color: #00c24f;
+  color: #2E26FF;
+  border: 1px solid #75fba6;
+  background-color: #75fba6;
 }
 #bsc-chat-container .bsc-message-list .bsc-message-list-container .bsc-local .bsc-message-document,
 #bsc-chat-container .bsc-message-list .bsc-message-list-container .bsc-remote .bsc-message-document {
