@@ -38,6 +38,10 @@ AFTER HEADER – GOTO C2C
   border: none;
   border-radius: 20px;
 }
+.goto-c2c button:hover {
+  color: #2E26FF;
+  background-color: #75fba6;
+}
 
 /* ===============================
 BEFORE MESSAGE LIST – C2C
@@ -63,6 +67,10 @@ BEFORE MESSAGE LIST – C2C
   background-color: #2e26ff;
   color: #fff;
   border-radius: 20px;
+}
+.c2c .webcareslot1 .cmec_bg .cmec_content .call_fill_data .button-call button:hover {
+  color: #2E26FF;
+  background-color: #75fba6;
 }
 
 /* ===============================
