@@ -4,13 +4,11 @@ function waitForChatbot() {
             const chatbot = document.getElementById('chatbot');
 
             if (chatbot?.shadowRoot) {
-                console.log('Chatbot found, initializing addon...');
                 observer.disconnect();
                 resolve(chatbot);
             }
         });
 
-        console.log(document, "Observing for chatbot...");
         observer.observe(document.body, {
             childList: true,
             subtree: true
@@ -20,7 +18,6 @@ function waitForChatbot() {
 
 async function initAddon() {
 
-    console.log('Waiting for chatbot to load...');
     const chatbot = await waitForChatbot();
     const shadow = chatbot.shadowRoot;
 
@@ -38,11 +35,13 @@ async function initAddon() {
     });
 
     chatbot.addEventListener("chat-action-event", (e) => {
-
-        console.log('Chat action event:', e.detail);
-
-        if (e.detail?.action === 'messageSent') {
-            endC2CMode()
+        if (e.detail.key == "aderirOnlineFormData") {
+            console.log('Saving aderirOnlineFormData to localStorage:', e.detail.value);
+            try {
+                localStorage.setItem(`bsc_action_aderirOnlineFormData`, JSON.stringify(e.detail.value));
+            } catch (e) {
+                console.warn('Could not save action data to localStorage', e);
+            }
         }
     });
     setTimeout(() => {
