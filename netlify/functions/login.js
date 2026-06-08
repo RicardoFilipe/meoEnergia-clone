@@ -29,8 +29,9 @@ exports.handler = async (event) => {
     const CREDENTIALS = {
       "edgar-m-quintero@alticelabs.com": "meoEnergia2024!",
       "diogo-a-rocha@alticelabs.com": "mamahuevo",
-      "diogo-a-rocha@alticelabs.com": "meoEnergia2025",
+      "cesar.p.carvalho@alticelabs.com": "meoEnergia2025",
       "ricardo-a-filipe@alticelabs.com": "meoEnergia2025",
+      "jorge-m-sousa@alticelabs.com": "meoEnergia2025"
     };
 
     console.log("[VALIDATE] Credenciais válidas no sistema:", Object.keys(CREDENTIALS));
