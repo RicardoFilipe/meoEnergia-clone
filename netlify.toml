@@ -1,0 +1,11 @@
+[build]
+  command = "echo 'Static site'"
+  publish = "."
+
+[[edge_functions]]
+  path = "/*"
+  function = "auth"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
