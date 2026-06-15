@@ -1,0 +1,119 @@
+{
+            "episodeFk": 14408704,
+            "episodeStartDate": "2006-12-05T18:00:00",
+            "episodeEndDate": "2006-12-05T18:30:00",
+            "teamFk": 10494,
+            "teamObj": {
+                "id": 10494,
+                "description": "Ana Mafalda  Antunes",
+                "active": "N",
+                "showPortal": "Y",
+                "serviceFk": 4984,
+                "serviceObj": {
+                    "id": 4984,
+                    "description": "Ortóptica",
+                    "shortDescription": "Ortóptica",
+                    "active": "N",
+                    "showPortal": "Y",
+                    "scheduleTypeFk": 3256,
+                    "scheduleTypeObj": {
+                        "id": 3256,
+                        "code": "06",
+                        "active": "Y",
+                        "description": "Técnicos Sup. Saúde",
+                        "shortDescription": "Técnicos Sup. Saúde",
+                        "codeAux": null,
+                        "valueAux": null
+                    },
+                    "specialityFk": 32085,
+                    "specialityObj": {
+                        "id": 32085,
+                        "code": "10",
+                        "active": "Y",
+                        "description": "Ortoptista",
+                        "shortDescription": "Ortoptista",
+                        "codeAux": null,
+                        "valueAux": null
+                    },
+                    "miscUnitFk": 5176,
+                    "miscUnitObj": {
+                        "id": 5176,
+                        "description": "CC LISBOA",
+                        "shortDescription": "CC Lisboa",
+                        "active": "Y"
+                    },
+                    "appointmentTypes": [
+                        {
+                            "id": 32241,
+                            "code": "pre",
+                            "active": "Y",
+                            "description": "Presencial 1ª",
+                            "shortDescription": "Pre",
+                            "codeAux": null,
+                            "valueAux": "b8e0f7"
+                        }
+                    ]
+                },
+                "resourceFk": 11120,
+                "members": [
+                    {
+                        "id": 8892,
+                        "profName": "Ana Mafalda  Antunes",
+                        "internalNum": null,
+                        "leader": "Y",
+                        "active": "Y"
+                    }
+                ],
+                "insurances": [
+                    {
+                        "id": 227684,
+                        "insuranceFk": 1111,
+                        "insuranceObj": {
+                            "id": 1111,
+                            "code": "999998",
+                            "active": "Y",
+                            "description": "PRIVADO",
+                            "shortDescription": "PRIVADO",
+                            "codeAux": null,
+                            "valueAux": null
+                        }
+                    }
+                ],
+                "appointmentTypes": []
+            },
+            "state": "R",
+            "insuranceFk": 32238,
+            "insuranceObj": {
+                "id": 32238,
+                "code": "9215.1_PT",
+                "active": "Y",
+                "description": "ACS Clássico",
+                "shortDescription": "ACS Clássico",
+                "codeAux": null,
+                "valueAux": null
+            },
+            "cancelledDate": null,
+            "cancelledReasonFk": null,
+            "cancelledReasonObj": {
+                "id": null,
+                "code": null,
+                "active": null,
+                "description": null,
+                "shortDescription": null,
+                "codeAux": null,
+                "valueAux": null
+            },
+            "comingTime": "2006-12-05T14:44:00",
+            "outgoingTime": "2006-12-05T14:48:00",
+            "scheduleTypeFk": 32306,
+            "scheduleTypeObj": {
+                "id": 32306,
+                "code": "pres2",
+                "active": "Y",
+                "description": "Presencial Seg",
+                "shortDescription": "Pre Seg",
+                "codeAux": null,
+                "valueAux": "3366ff"
+            },
+            "videoLink": null
+        }
