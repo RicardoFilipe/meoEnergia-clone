@@ -143,8 +143,9 @@
     color: #00c24f;
   }
 
-
-
+.bsc-connection-banner {
+  top: 59px;
+}
 
 
 
@@ -290,6 +291,7 @@
     background-color: #fff;
     overflow: auto;
     padding-top: 57px;
+    position: unset;
 
     .bsc-message-list-container {
       padding: 20px 14px 0px 20px;
@@ -645,6 +647,71 @@
       border-radius: 5px;
       padding: 10px 0px;
 
+      #bsc-attachment-button {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+        border: none;
+        background: transparent;
+        color: #00c24f;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: color .15s ease-in-out;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+
+        &:hover {
+          color: #fff;
+          background-color: #00c24f;
+        }
+      }
+
+      #bsc-file-previews {
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        .bsc-file-preview-item {
+          background-color: #fff;
+          color: #666;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+
+        .bsc-file-preview-name {
+          font-weight: 600;
+          color: #444;
+        }
+
+        .bsc-file-preview-type {
+          color: #00c24f;
+          text-transform: uppercase;
+        }
+
+        .bsc-file-preview-remove {
+          background-color: #00c24f;
+          color: #fff;
+          border-radius: 50%;
+          width: 16px;
+          height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background-color .15s ease-in-out;
+
+          &:hover {
+            background-color: #00c24f;
+          }
+        }
+      }
+
       #bsc-mic-button {
         border: none;
         background: #000;
@@ -654,6 +721,7 @@
         -webkit-mask-position-y: 50%;
         width: 40px;
         height: 38px;
+        display: none;
 
         &:active {
           mask-image: none;
