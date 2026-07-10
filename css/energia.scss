@@ -563,6 +563,58 @@
           }
         }
       }
+
+      // Headings e tabelas dentro das mensagens do LLM
+      .bsc-message {
+        markdown {
+
+          h1, h2, h3, h4 {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 18px;
+            margin: 8px 0 6px 0;
+            color: #000;
+          }
+
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            line-height: 16px;
+            table-layout: fixed;
+            margin: 8px 0;
+
+            th, td {
+              padding: 6px 8px;
+              text-align: left;
+              border-bottom: 1px solid #e0e0e0;
+              word-wrap: break-word;
+              overflow-wrap: break-word;
+              word-break: break-word;
+              vertical-align: top;
+              white-space: normal;
+            }
+
+            th {
+              background-color: #00c24f;
+              color: #fff;
+              font-weight: 700;
+              font-size: 11px;
+              letter-spacing: 0.3px;
+            }
+
+            tr:nth-child(even) td {
+              background-color: #f5f5f5;
+            }
+
+            @media (hover: hover) {
+              tr:hover td {
+                background-color: #e8fdf0;
+              }
+            }
+          }
+        }
+      }
     }
 
     .scroll-to-bottom-btn {
