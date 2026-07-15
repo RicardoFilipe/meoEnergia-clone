@@ -193,7 +193,15 @@
 }
 
 #bsc-chat-container .bsc-header-action-close-icon {
+  width: 18px;
+  height: 18px;
   background-color: #FFFFFF;
+  mask-image: url("../icons/close-uzo.svg");
+  -webkit-mask-image: url("../icons/close-uzo.svg");
+  mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  mask-size: cover;
+  -webkit-mask-size: cover;
 }
 
 #bsc-chat-container .bsc-header-action-close {
