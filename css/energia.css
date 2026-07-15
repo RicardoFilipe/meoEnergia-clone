@@ -93,7 +93,7 @@
   bottom: 20px;
   right: 20px;
   z-index: 20000;
-  width: 340px;
+  width: 400px;
   transition: 0.3s ease-in-out;
   border-radius: 29px;
   overflow: hidden;
@@ -191,16 +191,18 @@
   flex: 0 0 auto;
   padding-right: 20px;
 }
+
+#bsc-chat-container .bsc-header-action-close-icon {
+  background-color: #FFFFFF;
+}
+
 #bsc-chat-container .bsc-header-action-close {
-  width: 18px;    
-height: 18px;
-background-color: #ffffff;    
-mask-image: url(../icons/close-uzo.svg);
--webkit-mask-image: url(../icons/close-uzo.svg);    
-mask-repeat: no-repeat, no-repeat;
--webkit-mask-repeat: no-repeat, no-repeat;    
-mask-size: cover;
--webkit-mask-size: cover;
+width: 20px;
+height: 58px;
+padding: 2px 0 2px 5px;
+border-radius: 3px;
+align-items: center;
+display: flex;
 }
 #bsc-chat-container .bsc-header-action-minimize {
   width: 20px;
