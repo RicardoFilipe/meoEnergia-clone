@@ -192,7 +192,15 @@
   padding-right: 20px;
 }
 #bsc-chat-container .bsc-header-action-close {
-  display: none;
+  width: 18px;    
+height: 18px;
+background-color: #ffffff;    
+mask-image: url(../icons/close-uzo.svg);
+-webkit-mask-image: url(../icons/close-uzo.svg);    
+mask-repeat: no-repeat, no-repeat;
+-webkit-mask-repeat: no-repeat, no-repeat;    
+mask-size: cover;
+-webkit-mask-size: cover;
 }
 #bsc-chat-container .bsc-header-action-minimize {
   width: 20px;
