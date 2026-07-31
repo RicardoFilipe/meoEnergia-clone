@@ -16,6 +16,8 @@ function waitForChatbot() {
     });
 }
 
+const FORM_BASE_URL = 'https://meo-energia-clone.netlify.app/formulariomeoenergia';
+
 async function initAddon() {
 
     const chatbot = await waitForChatbot();
@@ -30,7 +32,21 @@ async function initAddon() {
 
     chatbot.addEventListener("chat-user-interaction", (e) => {
         if (e.detail?.action === 'messageSent') {
-            chatContainer.classList.remove('c2c-mode');
+            endC2CMode();
+        }
+    });
+
+    chatbot.addEventListener("chat-action-event", (e) => {
+        if (e.detail.key == "aderirOnlineFormData") {
+            const value = e.detail.value;
+            console.log('[webchat-addon] aderirOnlineFormData recebido:', value);
+
+            const entry = {
+                data: (value && typeof value === 'object') ? value : {},
+                expires: Date.now() + 10 * 60 * 1000
+            };
+            localStorage.setItem('aderirOnlineFormData', JSON.stringify(entry));
+            window.location.href = FORM_BASE_URL;
         }
     });
 
@@ -69,7 +85,6 @@ function removeClassFromChatContainer(className) {
 }
 
 initAddon();
-
 
 function startC2CMode() {
     addClassToChatContainer('c2c-mode')
