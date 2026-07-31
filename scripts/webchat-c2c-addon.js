@@ -16,34 +16,7 @@ function waitForChatbot() {
     });
 }
 
-// =============================================================
-//  MOCK — remover quando a integração real estiver disponível
-//  URL base + 21 campos do formulário pré-preenchidos
-// =============================================================
-const infoDummie = {
-    url: 'https://meoenergia-demo.netlify.app/formulariomeoenergia' +
-        '?frm_nome=Jo%C3%A3o+Silva' +
-        '&frm_phone=912345678' +
-        '&frm_morada=Rua+das+Flores%2C+25+3%C2%BADto' +
-        '&frm_cp=1234-567' +
-        '&frm_email=joao.silva%40email.com' +
-        '&frm_nif=123456789' +
-        '&frm_iban=PT50000201231234567890154' +
-        '&frm_email_pay=joao.silva%40email.com' +
-        '&frm_cpe=PT0002000012345678AA' +
-        '&frm_servico=210123456' +
-        '&frm_pagamento=debitoDireto' +
-        '&frm_fornecedor=EDP+Comercial' +
-        '&frm_tipo_tarifa=Tarifa+fixa' +
-        '&frm_potencia=6%2C9' +
-        '&frm_horario=Simples' +
-        '&frm_ciclo=Sem+ciclo' +
-        '&frm_moradaexiste=Sim' +
-        '&frm_tarifa=N%C3%A3o' +
-        '&frm_transmitir=Sim' +
-        '&frm_tratamento=N%C3%A3o' +
-        '&frm_termos=true'
-};
+const FORM_BASE_URL = 'https://meo-energia-clone.netlify.app/formulariomeoenergia';
 
 async function initAddon() {
 
@@ -65,12 +38,15 @@ async function initAddon() {
 
     chatbot.addEventListener("chat-action-event", (e) => {
         if (e.detail.key == "aderirOnlineFormData") {
-            console.log('[webchat-c2c-addon] Redirecionando para formulário (MOCK):', infoDummie.url);
-            window.location.href = infoDummie.url;
+            const value = e.detail.value;
+            console.log('[webchat-c2c-addon] aderirOnlineFormData recebido:', value);
 
-            // TODO: substituir infoDummie.url pela URL construída dinamicamente com os dados reais:
-            // const params = new URLSearchParams(e.detail.value);
-            // window.location.href = 'https://meoenergia-demo.netlify.app/formulariomeoenergia?' + params.toString();
+            const entry = {
+                data: (value && typeof value === 'object') ? value : {},
+                expires: Date.now() + 10 * 60 * 1000
+            };
+            localStorage.setItem('aderirOnlineFormData', JSON.stringify(entry));
+            window.location.href = FORM_BASE_URL;
         }
     });
 
@@ -114,7 +90,6 @@ function removeClassFromChatContainer(className) {
 
 initAddon();
 
-
 function startC2CMode() {
     addClassToChatContainer('c2c-mode')
     removeClassFromChatContainer('c2c-ready')
@@ -124,23 +99,3 @@ function endC2CMode() {
     removeClassFromChatContainer('c2c-mode')
     addClassToChatContainer('c2c-ready')
 }
-
-
-// =============================================================
-// ======================= DEPRECATED ==========================
-// === Lógica anterior: escrita de dados no localStorage =======
-// === Substituída por redirect direto via URL parameters =======
-// =============================================================
-
-/*
-    chatbot.addEventListener("chat-action-event", (e) => {
-        if (e.detail.key == "aderirOnlineFormData") {
-            console.log('Saving aderirOnlineFormData to localStorage:', e.detail.value);
-            try {
-                localStorage.setItem(`bsc_action_aderirOnlineFormData`, JSON.stringify(e.detail.value));
-            } catch (e) {
-                console.warn('Could not save action data to localStorage', e);
-            }
-        }
-    });
-*/
