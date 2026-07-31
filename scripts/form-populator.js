@@ -1,10 +1,6 @@
 (function () {
   'use strict';
 
-  // =============================================================
-  //  NOVA LOGICA — leitura de dados via parametros do URL
-  // =============================================================
-
   var POLL_INTERVAL_MS = 300;
   var MAX_WAIT_MS = 12000;
 
@@ -59,7 +55,6 @@
       var fieldKey = entry[0];
       var fieldValue = String(entry[1]);
 
-      // Text inputs / selects: match by ID prefix
       var directMatches = document.querySelectorAll('[id^="' + fieldKey + '"]');
       if (directMatches.length > 0) {
         directMatches.forEach(function (el) {
@@ -69,7 +64,6 @@
         return;
       }
 
-      // Radio groups: IDs contain _sim_/_nao_ so match by name prefix instead
       var radioGroup = document.querySelectorAll('input[type="radio"][name^="' + fieldKey + '"]');
       if (radioGroup.length > 0) {
         var target = resolveRadioValue(fieldValue);
@@ -87,15 +81,10 @@
   }
 
   function waitAndPopulate() {
-    var params = new URLSearchParams(window.location.search);
-    var data = {};
-  }
-
-  function waitAndPopulate() {
     var data = {};
     var source = '';
 
-    // Fonte 1: localStorage com TTL (V3 — dados nunca expostos no URL)
+    // Fonte 1: localStorage com TTL (V3)
     var stored = localStorage.getItem('aderirOnlineFormData');
     if (stored) {
       try {
@@ -111,7 +100,7 @@
       } catch (e) {}
     }
 
-    // Fonte 2: URL params (V2 — fallback)
+    // Fonte 2: URL params (fallback)
     if (Object.keys(data).length === 0) {
       var params = new URLSearchParams(window.location.search);
       params.forEach(function (value, key) {
@@ -132,16 +121,20 @@
 
       if (probe) {
         clearInterval(timer);
-
         setTimeout(function () {
           populateFields(data);
         }, 400);
-
       } else {
         elapsed += POLL_INTERVAL_MS;
         if (elapsed >= MAX_WAIT_MS) clearInterval(timer);
       }
     }, POLL_INTERVAL_MS);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', waitAndPopulate);
+  } else {
+    waitAndPopulate();
   }
 
 })();
